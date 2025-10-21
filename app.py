@@ -1,11 +1,11 @@
 import streamlit as st
 import pandas as pd
-import pickle
+import joblib
 import difflib
 
 # Load data
 movies_data = pd.read_csv('movies_data.csv')
-similarity = pickle.load(open('similarity_compressed.pkl', 'rb'))
+similarity = joblib.load("similarity_compressed.pkl")
 
 st.title('🎬 Movie Recommender System')
 st.write("Find similar movies by typing your favorite movie name below.")
@@ -30,3 +30,4 @@ if st.button("Recommend"):
             index = movie[0]
             title_from_index = movies_data[movies_data.index == index]['title'].values[0]
             st.write(f"{i}. {title_from_index}")
+
